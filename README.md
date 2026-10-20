@@ -48,7 +48,18 @@ running Notepad++ through Wine.
 
 ## 📦 Install
 
-Requires **macOS 13 Ventura or later** and the Xcode Command Line Tools (`xcode-select --install`).
+Requires **macOS 13 Ventura or later**.
+
+### Download (easiest)
+
+1. Download **[NotepadLite.zip](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.zip)** from the [latest release](https://github.com/hesampourjam/notepadlite/releases/latest).
+2. Unzip it and drag **Notepad Lite.app** into your **Applications** folder.
+3. The first time, **right-click the app → Open → Open**. The app is open source but not notarized by Apple, so macOS asks once.
+   If macOS still refuses, run: `xattr -dr com.apple.quarantine "/Applications/Notepad Lite.app"`
+
+### Build from source
+
+Needs the Xcode Command Line Tools (`xcode-select --install`).
 
 ```bash
 git clone https://github.com/hesampourjam/notepadlite.git
@@ -120,7 +131,7 @@ Pull requests with new languages are very welcome!
 - [ ] Column (box) selection editing
 - [ ] Session restore for unsaved tabs
 - [ ] Themes and a settings window
-- [ ] Prebuilt, notarized downloads in Releases
+- [ ] Notarized downloads (no right-click → Open step)
 
 Have an idea? [Open an issue](https://github.com/hesampourjam/notepadlite/issues) — feature requests are how this roadmap gets written.
 
@@ -143,7 +154,8 @@ it helps other Mac users who miss Notepad++ find it.
 تب‌ها، رنگ‌آمیزی کد برای ۲۴ زبان، جست‌وجو و جایگزینی با Regex، عملیات روی خطوط،
 پشتیبانی از انکودینگ‌های فارسی (مثل Windows-1256) و متن راست‌به‌چپ، و ذخیره‌ی فایل‌های سیستمی با رمز ادمین (مثل `sudo`).
 
-نصب: `git clone` و بعد `./install.sh` — اگر به کارتان آمد، با یک ⭐ حمایت کنید.
+نصب: فایل [NotepadLite.zip](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.zip) را دانلود کنید، برنامه را به پوشه‌ی Applications بکشید و بار اول با راست‌کلیک ← Open اجرا کنید.
+یا از سورس: `git clone` و بعد `./install.sh` — اگر به کارتان آمد، با یک ⭐ حمایت کنید.
 
 ## License
 
