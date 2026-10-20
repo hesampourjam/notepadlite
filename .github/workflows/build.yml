@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build app
+        run: ./build.sh
+
+      - name: Zip app
+        run: cd build && ditto -c -k --keepParent "Notepad Lite.app" NotepadLite.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NotepadLite
+          path: build/NotepadLite.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/NotepadLite.zip
+          generate_release_notes: true
