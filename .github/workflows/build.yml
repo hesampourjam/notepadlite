@@ -13,22 +13,28 @@ jobs:
   build:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Build app
         run: ./build.sh
 
-      - name: Zip app
-        run: cd build && ditto -c -k --keepParent "Notepad Lite.app" NotepadLite.zip
+      - name: Package (zip + dmg)
+        run: |
+          (cd build && ditto -c -k --keepParent "Notepad Lite.app" NotepadLite.zip)
+          ./make_dmg.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: NotepadLite
-          path: build/NotepadLite.zip
+          path: |
+            build/NotepadLite.dmg
+            build/NotepadLite.zip
 
       - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/NotepadLite.zip
+          files: |
+            build/NotepadLite.dmg
+            build/NotepadLite.zip
           generate_release_notes: true

@@ -6,14 +6,14 @@
 
 **The Notepad++ feeling, native on your Mac.**
 
-A fast, tiny (~500 KB), 100% native AppKit text editor for macOS —
+A fast, tiny (~1 MB), 100% native AppKit text editor for macOS —
 tabs, syntax highlighting, regex find & replace, line operations, encodings, and *sudo* saving.
 No Electron. No Wine. No subscription.
 
 [![Build](https://github.com/hesampourjam/notepadlite/actions/workflows/build.yml/badge.svg)](https://github.com/hesampourjam/notepadlite/actions/workflows/build.yml)
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
 ![Swift](https://img.shields.io/badge/Swift-AppKit-F05138?logo=swift&logoColor=white)
-![Size](https://img.shields.io/badge/app%20size-~500%20KB-brightgreen)
+![Size](https://img.shields.io/badge/app%20size-~1%20MB-brightgreen)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 <img src="docs/screenshot.jpg" width="820" alt="Notepad Lite editing a Python file in dark mode">
@@ -52,10 +52,16 @@ Requires **macOS 13 Ventura or later**.
 
 ### Download (easiest)
 
-1. Download **[NotepadLite.zip](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.zip)** from the [latest release](https://github.com/hesampourjam/notepadlite/releases/latest).
-2. Unzip it and drag **Notepad Lite.app** into your **Applications** folder.
-3. The first time, **right-click the app → Open → Open**. The app is open source but not notarized by Apple, so macOS asks once.
-   If macOS still refuses, run: `xattr -dr com.apple.quarantine "/Applications/Notepad Lite.app"`
+Works on both **Apple Silicon** and **Intel** Macs.
+
+1. Download **[NotepadLite.dmg](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.dmg)** from the [latest release](https://github.com/hesampourjam/notepadlite/releases/latest).
+2. Open it and drag **Notepad Lite** onto the **Applications** folder.
+3. Open the app once. The app is open source but not notarized by Apple, so macOS blocks it the first time:
+   - **macOS 15 and later:** open *System Settings → Privacy & Security*, scroll down and click **Open Anyway**.
+   - **macOS 13–14:** right-click the app → **Open** → **Open**.
+   - Or, in Terminal: `xattr -dr com.apple.quarantine "/Applications/Notepad Lite.app"`
+
+> Prefer a zip? [NotepadLite.zip](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.zip) contains the same app.
 
 ### Build from source
 
@@ -75,6 +81,7 @@ open -a "Notepad Lite" ~/.zshrc
 ```
 
 > Just want the `.app` without installing? Run `./build.sh` — the app lands in `build/Notepad Lite.app`.
+> Then `./make_dmg.sh` packages it as `build/NotepadLite.dmg`.
 
 **Make it your default text editor:** in Finder, select any `.txt` file → *Get Info* (⌘I) → *Open with: Notepad Lite* → *Change All…*
 
@@ -154,7 +161,8 @@ it helps other Mac users who miss Notepad++ find it.
 تب‌ها، رنگ‌آمیزی کد برای ۲۴ زبان، جست‌وجو و جایگزینی با Regex، عملیات روی خطوط،
 پشتیبانی از انکودینگ‌های فارسی (مثل Windows-1256) و متن راست‌به‌چپ، و ذخیره‌ی فایل‌های سیستمی با رمز ادمین (مثل `sudo`).
 
-نصب: فایل [NotepadLite.zip](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.zip) را دانلود کنید، برنامه را به پوشه‌ی Applications بکشید و بار اول با راست‌کلیک ← Open اجرا کنید.
+نصب: فایل [NotepadLite.dmg](https://github.com/hesampourjam/notepadlite/releases/latest/download/NotepadLite.dmg) را دانلود و باز کنید و برنامه را روی پوشه‌ی Applications بکشید (برای مک‌های Apple Silicon و Intel).
+بار اول macOS جلوی اجرا را می‌گیرد: در *System Settings → Privacy & Security* روی **Open Anyway** بزنید (در macOS 13 و 14: راست‌کلیک ← Open).
 یا از سورس: `git clone` و بعد `./install.sh` — اگر به کارتان آمد، با یک ⭐ حمایت کنید.
 
 ## License

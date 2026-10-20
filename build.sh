@@ -5,13 +5,16 @@ cd "$(dirname "$0")"
 
 APP="build/Notepad Lite.app"
 
-echo "▸ Compiling (release)…"
-swift build -c release
+# Universal binary: runs natively on Apple Silicon and Intel Macs.
+ARCHS=(--arch arm64 --arch x86_64)
+
+echo "▸ Compiling (release, universal)…"
+swift build -c release "${ARCHS[@]}"
 
 echo "▸ Assembling app bundle…"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp "$(swift build -c release --show-bin-path)/NotepadLite" "$APP/Contents/MacOS/NotepadLite"
+cp "$(swift build -c release "${ARCHS[@]}" --show-bin-path)/NotepadLite" "$APP/Contents/MacOS/NotepadLite"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 
 if [ ! -f build/AppIcon.icns ]; then
