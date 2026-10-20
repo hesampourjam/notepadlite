@@ -10,5 +10,8 @@ echo "▸ Installing to $DEST…"
 osascript -e 'quit app "Notepad Lite"' 2>/dev/null || true
 rm -rf "$DEST"
 cp -R "build/Notepad Lite.app" "$DEST"
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$DEST"
+LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
+"$LSREGISTER" -f "$DEST"
+# Keep only the installed copy in Finder's "Open With" menu.
+"$LSREGISTER" -u "$PWD/build/Notepad Lite.app" 2>/dev/null || true
 echo "✓ Installed. Open it from Launchpad / Spotlight, or: open -a \"Notepad Lite\" file.txt"

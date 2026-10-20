@@ -17,6 +17,9 @@ cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
 hdiutil create -volname "Notepad Lite" -srcfolder "$STAGE" -ov -format UDZO -fs HFS+ "$DMG" >/dev/null
 rm -rf "$STAGE"
+# Forget the temporary copy so it doesn't show up in Finder's "Open With" menu.
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
+  -u "$PWD/$STAGE/Notepad Lite.app" 2>/dev/null || true
 codesign --force --sign - "$DMG" >/dev/null
 
 echo "✓ Built: $DMG"
